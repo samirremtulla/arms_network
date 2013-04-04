@@ -47,7 +47,7 @@ isis.Game.prototype.changeCity = function(newCity) {
  */
 isis.Game.prototype.buyItem = function(item) {
   console.log('trying to buy ' + item.name);
-  var quantity = prompt("How many would you like to buy?");
+  var quantity = parseInt(prompt("How many would you like to buy?"));
   var total = quantity * item.currentPrice;
   if (this.agent.money<total){
     alert("YOU CAN NOT AFFORD THIS");
@@ -89,7 +89,7 @@ isis.Game.prototype.sellItem = function(inventoryItem) {
   console.log(inventoryItem);
   console.log(this);
   console.log(this.agent.inventory.item);
-  var sell = prompt("How many do you want to sell " + inventoryItem.quantity + " items at a price of $" + inventoryItem.item.currentPrice + "?") ;
+  var sell = parseInt(prompt("How many do you want to sell " + inventoryItem.quantity + " items at a price of $" + inventoryItem.item.currentPrice + "?")) ;
   if (sell > inventoryItem.quantity) {
     alert("You don't have that many items to sell BIATCH");
   }
