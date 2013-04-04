@@ -23,8 +23,12 @@
  * Use this.refreshViews() to reload the UI.
  */
 isis.Game.prototype.changeCity = function(newCity) {
+  
   console.log('trying to change city to ' + newCity.name);
+  this.currentCity = newCity;
+  this.refreshViews();
 }
+
 
 /*
  * This function will be called when the user buys an item
