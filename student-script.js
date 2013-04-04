@@ -82,6 +82,7 @@ isis.Game.prototype.sellItem = function(inventoryItem) {
   // updates inventory (this.agent.inventory.pop)
   // updates this.agent.money
   console.log(inventoryItem);
+  console.log(this);
   console.log(this.agent.inventory.item);
   var sell = prompt("How many do you want to sell " + inventoryItem.quantity + " items at a price of $" + inventoryItem.item.currentPrice + "?") ;
   if (sell > inventoryItem.quantity) {
@@ -126,9 +127,9 @@ isis.Game.prototype.initBadThings = function(badThings) {
     ohNoes: function(agent) {
       alert("Police! Took all your inventory")
       // Your bad thing code goes here
-      console.log(agent.inventory);
+      // console.log(agent.inventory);
       agent.inventory.inventory=[];
-      console.log(agent.inventory);
+      // console.log(agent.inventory);
     }
   });
 }
@@ -148,7 +149,18 @@ isis.Game.prototype.initBadThings = function(badThings) {
  * If the player has more than $5000 then they should be ranked as a 'Double-0'.
  */
 isis.Agent.prototype.getRank = function(item) { 
-  return 'Agent';
+  if (this.money < 500) {
+    return 'Rookie';
+  }
+  else if (this.money >= 500 && this.money < 1000) {
+    return 'Agent';
+  }
+  else if (this.money >= 1000 && this.money < 5000) {
+    return 'First Class Agent';
+  }
+  else {
+    return 'Double-0s';
+  }
 }
 
 /*
@@ -160,8 +172,8 @@ isis.Agent.prototype.getRank = function(item) {
  * Use prompt() to get user input.
  */
 isis.Agent.prototype.init = function(item) { 
-  this.name = 'Sterling Archer'; // This should be set by the user
-  this.codename = 'Dutchess'; // This too
+  this.name = prompt("WHAT IS YOUR NAME?");
+  this.codename = prompt("What is your NICKNAME?");
 }
 
 
