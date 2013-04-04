@@ -26,7 +26,12 @@ isis.Game.prototype.changeCity = function(newCity) {
   
   console.log('trying to change city to ' + newCity.name);
   this.currentCity = newCity;
+  for (var i=0; i<newCity.items.length;i++){
+    newPrice = newCity.items[i];
+    newPrice = newPrice.recalculatePrice();
+  }
   this.refreshViews();
+
 }
 
 
