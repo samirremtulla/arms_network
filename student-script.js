@@ -54,16 +54,10 @@ isis.Game.prototype.buyItem = function(item) {
       // console.log(this.agent.money);
       this.agent.inventory.push(item, quantity);
       this.agent.money = this.agent.money - total;
-      this.refreshViews();
       // console.log(this.agent.inventory);
       // console.log(this.agent.money);
     }
   }
-  /* 
-
-  checks available balance
-  confirm purchase with updated total
-  adds to inventory*/
 }
 
 /**
@@ -83,6 +77,24 @@ isis.Game.prototype.buyItem = function(item) {
 isis.Game.prototype.sellItem = function(inventoryItem) {
   var value = inventoryItem.item.currentPrice * inventoryItem.quantity;
   console.log('trying to sell ' + inventoryItem.item.name + ', I have ' + inventoryItem.quantity + ' worth $' + value);
+  // prompt how many they want to sell
+  // confirm quantity & price to be sold at
+  // updates inventory (this.agent.inventory.pop)
+  // updates this.agent.money
+  console.log(inventoryItem);
+  console.log(this.agent.inventory.item);
+  var sell = prompt("How many do you want to sell " + inventoryItem.quantity + " items at a price of $" + inventoryItem.item.currentPrice + "?") ;
+  if (sell > inventoryItem.quantity) {
+    alert("You don't have that many items to sell BIATCH");
+  }
+  else {
+    confirms = confirm("Are you sure you wanna sell?");
+    if (confirms === true) {
+      this.agent.inventory.pop(inventoryItem.item, sell);
+      this.agent.money = this.agent.money + (sell * inventoryItem.item.currentPrice);
+    }
+  }
+
 }
 
 
