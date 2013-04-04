@@ -42,6 +42,28 @@ isis.Game.prototype.changeCity = function(newCity) {
  */
 isis.Game.prototype.buyItem = function(item) {
   console.log('trying to buy ' + item.name);
+  var quantity = prompt("How many would you like to buy?");
+  var total = quantity * item.currentPrice;
+  if (this.agent.money<total){
+    alert("YOU CAN NOT AFFORD THIS");
+  }
+  else{
+    confirms = confirm("Confirm purchase of $" + total);
+    if (confirms === true){
+      // console.log(this.agent.inventory);
+      // console.log(this.agent.money);
+      this.agent.inventory.push(item, quantity);
+      this.agent.money = this.agent.money - total;
+      this.refreshViews();
+      // console.log(this.agent.inventory);
+      // console.log(this.agent.money);
+    }
+  }
+  /* 
+
+  checks available balance
+  confirm purchase with updated total
+  adds to inventory*/
 }
 
 /**
