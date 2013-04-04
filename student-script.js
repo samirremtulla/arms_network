@@ -112,10 +112,11 @@ isis.Game.prototype.sellItem = function(inventoryItem) {
  */
 isis.Game.prototype.initBadThings = function(badThings) {
   badThings.push({
-    name: "Temporary bad thing!",
+    name: "You got robbed!",
     ohNoes: function(agent) {
-      alert("This is a demo bad thing, luckily nothing bad happened this time!");
-    }
+      alert("You got robbed! Lose half of your cash");
+      agent.money = agent.money/2;
+      }
   });
   
   // Fill this one in with a new bad thing which could happen!
@@ -123,10 +124,13 @@ isis.Game.prototype.initBadThings = function(badThings) {
   badThings.push({
     name: "Name your bad thing!",
     ohNoes: function(agent) {
+      alert("Police! Took all your inventory")
       // Your bad thing code goes here
+      console.log(agent.inventory);
+      agent.inventory.inventory=[];
+      console.log(agent.inventory);
     }
   });
-  
 }
 
 /*************************/
