@@ -1,6 +1,6 @@
 var isis = function() {
   var _game, _items, _cities;
-  var $_cities, $_cityTitle, $_items, $_inventory, $_codename, $_agentName, $_agentRank;
+  var $_cities, $_cityTitle, $_items, $_inventory, $_codename, $_agentName, $_agentRank, $_turns;
   var Agent, City, Game;
   
   function getRandomIntInRange(min, max) {
@@ -159,6 +159,7 @@ var isis = function() {
     $_agentName.text(agent.name);
     $_agentRank.text(agent.getRank());
     $_money.text('$' + agent.money);
+    $_turns.text(agent.turns);
   }
   
   Item = function(name, minPrice, maxPrice) {
@@ -294,7 +295,7 @@ var isis = function() {
     this.name = name;
     this.money = 1000;
     this.inventory = new AgentInventory();
-    
+    this.turns = 2;
     this.init();
   }
   
@@ -316,6 +317,7 @@ var isis = function() {
       $_agentName = $('#agentName');
       $_agentRank = $('#agentRank');
       $_money = $('#agentMoney');
+      $_turns = $('#turns');
       _game = new Game();
     },
     
@@ -329,6 +331,6 @@ var isis = function() {
     AgentInventoryItem: AgentInventoryItem,
     Item: Item,
     City: City,
-    Game: Game
+    Game: Game  
   }
 }();

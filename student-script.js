@@ -23,7 +23,8 @@
  * Use this.refreshViews() to reload the UI.
  */
 isis.Game.prototype.changeCity = function(newCity) {
-  
+  console.log(this.agent.turns);
+  if (this.agent.turns>0){
   console.log('trying to change city to ' + newCity.name);
   this.currentCity = newCity;
   for (var i=0; i<newCity.items.length;i++){
@@ -31,7 +32,13 @@ isis.Game.prototype.changeCity = function(newCity) {
     newPrice = newPrice.recalculatePrice();
   }
   this.refreshViews();
+  this.agent.turns-=1;
 
+  }
+  else{
+    alert("GAME OVER!");
+    
+  }
 }
 
 
